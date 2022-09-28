@@ -19,6 +19,13 @@ def test_init():
     assert isinstance(handler.cache, DefaultCache)
     assert handler.request_options["timeout"] is not REQUEST_TIMEOUT_DEFAULT
     assert "US" in handler.countries
+def test_init_no_request_option():
+    token = "mytesttoken"
+    handler = Handler(token)
+    assert handler.access_token == token
+    assert isinstance(handler.cache, DefaultCache)
+    assert handler.request_options["timeout"] is REQUEST_TIMEOUT_DEFAULT
+    assert "US" in handler.countries
 
 
 def test_headers():
