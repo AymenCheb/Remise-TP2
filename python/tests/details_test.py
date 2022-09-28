@@ -18,8 +18,9 @@ def test_getattr_success():
 def test_getattr_fail():
     data = {"foo": "bar"}
     details = Details(data)
-    with pytest.raises(Exception):
-        details.blah
+    choice = "blah"
+    with pytest.raises(AttributeError, match=r'^{} is not a valid attribute of Details$'.format(choice)):
+        getattr(details, choice)
 
 
 def test_all():

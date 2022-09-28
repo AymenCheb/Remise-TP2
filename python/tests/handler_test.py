@@ -9,12 +9,15 @@ from ipinfo import handler_utils
 import ipinfo
 import pytest
 
+from python.ipinfo.handler_utils import REQUEST_TIMEOUT_DEFAULT
+
 
 def test_init():
     token = "mytesttoken"
-    handler = Handler(token)
+    handler = Handler(token, request_options = {"timeout" : 8})
     assert handler.access_token == token
     assert isinstance(handler.cache, DefaultCache)
+    assert handler.request_options["timeout"] is not REQUEST_TIMEOUT_DEFAULT
     assert "US" in handler.countries
 
 
