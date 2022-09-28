@@ -1,0 +1,2 @@
+include ipinfo/countries.json
+include ipinfo/eu.json
